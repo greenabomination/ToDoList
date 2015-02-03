@@ -1,17 +1,19 @@
 package com.greenapp.todolist.to_dolist;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
-public class ToDoListActivity extends Activity {
+public class ToDoListActivity extends Activity  {
 
 
     @Override
@@ -20,8 +22,8 @@ public class ToDoListActivity extends Activity {
         setContentView(R.layout.activity_to_do_list);
 
         ListView myListView = (ListView) findViewById(R.id.myListView);
-        final EditText myEditText = (EditText) findViewById(R.id.myEditText);
 
+        final Button myButton = (Button)findViewById(R.id.mybutton);
         final ArrayList<String> todoItems = new ArrayList<String>();
         final ArrayAdapter<String> aa;
 
@@ -44,7 +46,15 @@ public class ToDoListActivity extends Activity {
                 return false;
             }
         });
+
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                todoItems.add(0, myEditText.getText().toString());
+                aa.notifyDataSetChanged();
+                myEditText.setText("");
+            }
+        });
+
     }
-
-
 }
