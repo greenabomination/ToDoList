@@ -4,34 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false">
-
-        <EditText
-            android:id="@+id/myEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/addItemContentDescription"
-            android:hint="@string/addItemHint"
-            android:layout_weight="3"
-            android:layout_gravity="center_vertical" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:text="add"
-            android:id="@+id/mybutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical" />
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/myListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+   <fragment
+       android:name="com.greenapp.todolist.to_dolist.NewItemFragment"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/NewItemFragment"
+       />
+<fragment
+    android:name="com.greenapp.todolist.to_dolist.ToDoListFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ToDoListFragment"
+    />
 </LinearLayout>
