@@ -14,6 +14,7 @@ public class ToDoListActivity extends Activity implements NewItemFragment.OnNewI
     final ArrayAdapter<String> aa;
 
     {
+
         aa = new ArrayAdapter<String>(this, R.layout.todolist_item, todoItems);
 
     }
