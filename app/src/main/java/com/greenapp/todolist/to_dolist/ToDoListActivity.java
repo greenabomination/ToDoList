@@ -1,40 +1,42 @@
 package com.greenapp.todolist.to_dolist;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
-
-
 public class ToDoListActivity extends Activity implements NewItemFragment.OnNewItemAddedListener {
 
-    final ArrayList<String> todoItems = new ArrayList<String>();
-    final ArrayAdapter<String> aa;
+    private ArrayAdapter<String> aa;
+    private ArrayList<String> todoItems;
 
-    {
-
-        aa = new ArrayAdapter<String>(this, R.layout.todolist_item, todoItems);
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Inflate your view
         setContentView(R.layout.activity_to_do_list);
 
+        // Get references to the Fragments
         FragmentManager fm = getFragmentManager();
-        ToDoListFragment toDoListFragment = (ToDoListFragment) fm.findFragmentById(R.id.ToDoListFragment);
+        ToDoListFragment todoListFragment =
+                (ToDoListFragment)fm.findFragmentById(R.id.ToDoListFragment);
 
+        // Create the array list of to do items
+        todoItems = new ArrayList<String>();
 
-        toDoListFragment.setListAdapter(aa);
+        // Create the array adapter to bind the array to the ListView
+        int resID = R.layout.todolist_item;
+        aa = new ArrayAdapter<String>(this, resID, todoItems);
 
-
+        // Bind the array adapter to the ListView.
+        todoListFragment.setListAdapter(aa);
     }
 
     public void onNewItemAdded(String newItem) {
         todoItems.add(newItem);
         aa.notifyDataSetChanged();
     }
+
 }
