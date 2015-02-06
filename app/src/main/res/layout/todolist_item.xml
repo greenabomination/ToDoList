@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.greenapp.todolist.to_dolist.TodoListItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    android:id="@+id/rowDate"
+        android:background="@color/notepad_paper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical"
+        android:textColor="#F000"
+        android:layout_alignParentRight="true"
+    />
+<com.greenapp.todolist.to_dolist.TodoListItemView
+    android:id="@+id/row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fadingEdge="vertical"
     android:padding="10dp"
     android:scrollbars="vertical"
     android:textColor="@color/notepad_text" />
+</RelativeLayout>
