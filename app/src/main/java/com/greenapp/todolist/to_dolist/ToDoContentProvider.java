@@ -38,6 +38,7 @@ public class ToDoContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        Log.d("myLogs", "create");
 
         myOpenHelper = new MySQLiteOpenHelper(getContext(),
                 MySQLiteOpenHelper.DATABASE_NAME, null,
@@ -74,7 +75,7 @@ public class ToDoContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-
+        Log.d("myLogs", "gettype");
         switch (urimatcher.match(uri)) {
             case ALLROWS:
                 return "vnd.android.cursor.dir/vnd.paad.todos";
@@ -89,6 +90,7 @@ public class ToDoContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        Log.d("myLogs", "insert");
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
         String nullColumnHack = null;
 
@@ -106,6 +108,7 @@ public class ToDoContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+        Log.d("myLogs", "delete");
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         switch (urimatcher.match(uri)) {
@@ -127,6 +130,7 @@ public class ToDoContentProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        Log.d("myLogs", "update");
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         switch (urimatcher.match(uri)) {
@@ -152,8 +156,8 @@ public class ToDoContentProvider extends ContentProvider {
         private static final String DATABASE_TABLE = "todoItemTable";
 
         private static final String DATABASE_CREATE = "create table " +
-                DATABASE_TABLE + "(" + KEY_ID +
-                " integer primary key autoincrement " +
+                DATABASE_TABLE + " (" + KEY_ID +
+                " integer primary key autoincrement, " +
                 KEY_TASK + " text not null, " +
                 KEY_CREATION_DATE + " long);";
 
@@ -164,6 +168,8 @@ public class ToDoContentProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+
+            Log.d("myLogs", "DATABASE_CREATE");
             db.execSQL(DATABASE_CREATE);
         }
 

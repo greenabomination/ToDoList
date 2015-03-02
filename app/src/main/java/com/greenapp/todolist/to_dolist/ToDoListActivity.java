@@ -44,11 +44,13 @@ public class ToDoListActivity extends Activity implements NewItemFragment.OnNewI
     }
 
     public void onResume() {
+        Log.d("myLogs", "onResume");
         super.onResume();
         getLoaderManager().restartLoader(0, null, this);
     }
 
     public void onNewItemAdded(String newItem) {
+        Log.d("myLogs", "onNewItemAdded");
         ContentResolver cr = getContentResolver();
         ContentValues cv = new ContentValues();
         cv.put(ToDoContentProvider.KEY_TASK, newItem);
@@ -58,22 +60,27 @@ public class ToDoListActivity extends Activity implements NewItemFragment.OnNewI
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.d("myLogs", "createLoader");
         CursorLoader loader = new CursorLoader(this,
                 ToDoContentProvider.CONTENT_URI, null, null, null, null);
-        Log.d("myLogs", "createLoader");
+
         return loader;
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Log.d("myLogs", "LoadFinish");
         int keyTaskIndex = data.getColumnIndexOrThrow(ToDoContentProvider.KEY_TASK);
         todoItems.clear();
+        Log.d("myLogs", "LoadFinish1");
         while (data.moveToNext()) {
+            Log.d("myLogs", "LoadFinish2");
             ToDoItem newItem = new ToDoItem(data.getString(keyTaskIndex));
             todoItems.add(newItem);
+            Log.d("myLogs", "LoadFinish3");
         }
         aa.notifyDataSetChanged();
-        Log.d("myLogs", "LoadFinish");
+        Log.d("myLogs", "LoadFinish4");
     }
 
     @Override
